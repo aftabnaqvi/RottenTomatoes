@@ -23,29 +23,6 @@ static const NSString *BOX_OFFICE_MOVIES = @"/lists/movies/box_office.json&limit
 - (void)viewDidLoad {
 	self.url = [NSString stringWithFormat:@"%@%@?apikey=%@&limit=30&country=us", BASE_URL, BOX_OFFICE_MOVIES, API_KEY];
 	[super viewDidLoad];
-	
-	//NSString *urlString = [NSString stringWithFormat:@"%@%@?apikey=%@", BASE_URL, BOX_OFFICE_LIST_ENDPOINT, API_KEY];
-	//NSLog(@"URL: %@", urlString);
-	//NSURL *url = [NSURL URLWithString:urlString];
-	
-	// making a network call
-	//NSURL *url = [NSURL URLWithString:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=rvjna6c6k3mwutfn9hfqmaza&limit=30&country=us"];
-//	NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//	
-//	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-//		if(data == nil)
-//		{
-//			[self createWarningView];
-//			[SVProgressHUD dismiss];
-//			return;
-//		}
-//		
-//		NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-//		NSLog(@"response: %@", responseDictionary);
-//		self.movies = responseDictionary[@"movies"];
-//		[self.tableView reloadData];
-//		[SVProgressHUD dismiss];
-//	}];
 }
 
 - (void)didReceiveMemoryWarning {
