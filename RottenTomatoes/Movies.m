@@ -62,8 +62,9 @@
 		if(responseObject == nil){
 			[self createWarningView];
 			self.warningView.hidden = false;
+			[(UIRefreshControl *)sender endRefreshing];
 			[self.tableView reloadData];
-			cleanup_refresh_state();
+			[SVProgressHUD dismiss];
 		}
 	
 		// Convert the information received in an array of MovieInfo
@@ -75,9 +76,10 @@
 		
 		cleanup_refresh_state();
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		[SVProgressHUD dismiss];
 		[self createWarningView];
+		[(UIRefreshControl *)sender endRefreshing];
 		self.warningView.hidden = false;
-		cleanup_refresh_state();
 	}];
 	
  
@@ -89,7 +91,7 @@
 {
 	self.warningView = nil;
 	self.warningView = [[UIView alloc] initWithFrame:CGRectMake(0,
-																self.navigationController.navigationBar.frame.size.height, self.view.frame.size.width, 40)];
+																self.navigationController.navigationBar.frame.size.height+statusBarHeight(), self.view.frame.size.width, 40)];
 	UILabel *warningLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/4, 0, self.view.frame.size.width/2, 40)];
 	warningLabel.text = @"Network Error";
 	
@@ -107,7 +109,7 @@
 	
 	UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:path];
 	UIImageView *warningIcon = [[UIImageView alloc] initWithImage:iconImage];
-	warningIcon.frame = CGRectMake(self.view.frame.size.width/4, 12, 15, 15); //set these variables as you want
+	warningIcon.frame = CGRectMake(self.view.frame.size.width/4, 13, 15, 15); //set these variables as you want
 	[warningIcon setBackgroundColor:[UIColor clearColor]];
 	
 	[self.warningView addSubview:warningLabel];
@@ -128,8 +130,6 @@
 	MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
 	NSDictionary *movie = self.movies[indexPath.row];
 	
-	NSLog(@"Title : %@", movie[@"title"]);
-	
 	cell.titleLabel.text = movie[@"title"];
 	cell.synopsisLabel.text = movie[@"synopsis"];
 	NSString *url = [movie valueForKeyPath:@"posters.thumbnail"];
@@ -142,6 +142,7 @@
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 	MovieDetailViewController *vc = [[MovieDetailViewController alloc] init];
 	vc.movie = self.movies[indexPath.row];
+	self.tabBarController.tabBar.hidden = TRUE;
 	[self.navigationController pushViewController:vc animated:YES];
 }
 

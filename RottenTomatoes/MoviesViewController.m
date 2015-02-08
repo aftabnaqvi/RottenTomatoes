@@ -23,6 +23,7 @@ static const NSString *BOX_OFFICE_MOVIES = @"/lists/movies/box_office.json&limit
 - (void)viewDidLoad {
 	self.url = [NSString stringWithFormat:@"%@%@?apikey=%@&limit=30&country=us", BASE_URL, BOX_OFFICE_MOVIES, API_KEY];
 	[super viewDidLoad];
+	self.title = @"Movies";
 }
 
 - (void)didReceiveMemoryWarning {

@@ -31,6 +31,13 @@
 	MoviesViewController *moviesViewController = [[MoviesViewController alloc]init];
 	DVDViewController *dvdViewController = [[DVDViewController alloc]init];
 	
+	UIImage *image = [[UIImage imageNamed:@"DVD.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+	//moviesViewController.tabBarItem.image = [self imageWithImage:image scaledToSize:CGSizeMake(30, 30)];
+	
+	moviesViewController.tabBarItem.image = image;
+	
+	dvdViewController.tabBarItem.image = [[UIImage imageNamed:@"movie.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+	
 	UINavigationController *mnvc = [[UINavigationController alloc]initWithRootViewController:moviesViewController];
 	
 	UINavigationController *dnvc = [[UINavigationController alloc]initWithRootViewController:dvdViewController];
@@ -38,12 +45,22 @@
 	mnvc.tabBarItem.title = @"Movies";
 	dnvc.tabBarItem.title = @"DVDs";
 	
+	//tabBarController.tabBar.barTintColor = [UIColor blackColor];
+	
 	tabBarController.viewControllers = @[mnvc, dnvc];
 	
 	self.window.backgroundColor = [UIColor whiteColor];
 	[self.window makeKeyAndVisible];
 	return YES;
 	
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+	UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+	[image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+	UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	return newImage;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

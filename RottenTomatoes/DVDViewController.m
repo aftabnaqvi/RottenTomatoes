@@ -20,6 +20,7 @@ static const NSString *DVD_NEW_RELEASES = @"/lists/dvds//new_releases.json&limit
 	self.url = [NSString stringWithFormat:@"%@%@?apikey=%@&limit=30&country=us", BASE_URL, DVD_NEW_RELEASES, API_KEY];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+	self.title = @"DVDs";
 }
 
 - (void)didReceiveMemoryWarning {
