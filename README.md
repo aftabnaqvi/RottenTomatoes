@@ -1,7 +1,7 @@
 #Rotten Tomatoes
 This is a movies app displaying box office and top rental DVDs using the Rotten Tomatoes API.
 
-Time spent: 15 hours
+Time spent: 20 hours
 
 #Features
 
