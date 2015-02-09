@@ -11,6 +11,11 @@
 static const NSString *BASE_URL = @"http://api.rottentomatoes.com/api/public/v1.0";
 static const NSString *API_KEY = @"rvjna6c6k3mwutfn9hfqmaza";
 
-@interface Movies : UIViewController<UITableViewDataSource,UITableViewDelegate>
+//static const UIColor* lightPurpleColor = [UIColor colorWithRed:205.0f/255.0f
+//				green:153.0f/255.0f
+//				 blue:255.0f/255.0f
+//				alpha:1.0f];
+
+@interface Movies : UIViewController<UITableViewDataSource,UITableViewDelegate, UISearchBarDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) NSString *url;
 @end

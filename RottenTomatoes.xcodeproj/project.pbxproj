@@ -14,6 +14,8 @@
 		FA5D14FC1A86FDB70045CBA1 /* warning_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5D14FB1A86FDB70045CBA1 /* warning_icon.png */; };
 		FA5D15021A87209E0045CBA1 /* DVD.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5D15011A87209E0045CBA1 /* DVD.png */; };
 		FA5D15041A87218B0045CBA1 /* movie.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5D15031A87218B0045CBA1 /* movie.png */; };
+		FA5D15121A8861980045CBA1 /* CollMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5D15101A8861980045CBA1 /* CollMovieCell.m */; };
+		FA5D15131A8861980045CBA1 /* CollMovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5D15111A8861980045CBA1 /* CollMovieCell.xib */; };
 		FAABAB7D1A82ECA30030DF5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAABAB7C1A82ECA30030DF5E /* main.m */; };
 		FAABAB801A82ECA30030DF5E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAABAB7F1A82ECA30030DF5E /* AppDelegate.m */; };
 		FAABAB881A82ECA30030DF5E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAABAB871A82ECA30030DF5E /* Images.xcassets */; };
@@ -49,6 +51,9 @@
 		FA5D14FB1A86FDB70045CBA1 /* warning_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warning_icon.png; sourceTree = "<group>"; };
 		FA5D15011A87209E0045CBA1 /* DVD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DVD.png; sourceTree = "<group>"; };
 		FA5D15031A87218B0045CBA1 /* movie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movie.png; sourceTree = "<group>"; };
+		FA5D150F1A8861980045CBA1 /* CollMovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollMovieCell.h; sourceTree = "<group>"; };
+		FA5D15101A8861980045CBA1 /* CollMovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollMovieCell.m; sourceTree = "<group>"; };
+		FA5D15111A8861980045CBA1 /* CollMovieCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollMovieCell.xib; sourceTree = "<group>"; };
 		FAABAB771A82ECA30030DF5E /* RottenTomatoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RottenTomatoes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAABAB7B1A82ECA30030DF5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAABAB7C1A82ECA30030DF5E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -201,6 +206,9 @@
 				FAABABA71A82EF240030DF5E /* MovieCell.h */,
 				FAABABA81A82EF240030DF5E /* MovieCell.m */,
 				FAABABA91A82EF240030DF5E /* MovieCell.xib */,
+				FA5D150F1A8861980045CBA1 /* CollMovieCell.h */,
+				FA5D15101A8861980045CBA1 /* CollMovieCell.m */,
+				FA5D15111A8861980045CBA1 /* CollMovieCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -287,6 +295,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA5D15131A8861980045CBA1 /* CollMovieCell.xib in Resources */,
 				FA5D15021A87209E0045CBA1 /* DVD.png in Resources */,
 				FAD5CB681A83594100B68191 /* MovieDetailViewController.xib in Resources */,
 				FA5D15041A87218B0045CBA1 /* movie.png in Resources */,
@@ -350,6 +359,7 @@
 				FA5D14F91A86E7E30045CBA1 /* DVDViewController.m in Sources */,
 				FAABABA41A82ECE70030DF5E /* MoviesViewController.m in Sources */,
 				FAABAB801A82ECA30030DF5E /* AppDelegate.m in Sources */,
+				FA5D15121A8861980045CBA1 /* CollMovieCell.m in Sources */,
 				FAD5CB671A83594100B68191 /* MovieDetailViewController.m in Sources */,
 				FAABABAA1A82EF240030DF5E /* MovieCell.m in Sources */,
 				FAABAB7D1A82ECA30030DF5E /* main.m in Sources */,

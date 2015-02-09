@@ -31,12 +31,12 @@
 	MoviesViewController *moviesViewController = [[MoviesViewController alloc]init];
 	DVDViewController *dvdViewController = [[DVDViewController alloc]init];
 	
-	UIImage *image = [[UIImage imageNamed:@"DVD.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+	UIImage *image = [[UIImage imageNamed:@"movie.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 	//moviesViewController.tabBarItem.image = [self imageWithImage:image scaledToSize:CGSizeMake(30, 30)];
 	
 	moviesViewController.tabBarItem.image = image;
 	
-	dvdViewController.tabBarItem.image = [[UIImage imageNamed:@"movie.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+	dvdViewController.tabBarItem.image = [[UIImage imageNamed:@"DVD.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 	
 	UINavigationController *mnvc = [[UINavigationController alloc]initWithRootViewController:moviesViewController];
 	
@@ -45,7 +45,10 @@
 	mnvc.tabBarItem.title = @"Movies";
 	dnvc.tabBarItem.title = @"DVDs";
 	
-	//tabBarController.tabBar.barTintColor = [UIColor blackColor];
+	tabBarController.tabBar.barTintColor = [UIColor colorWithRed:205.0f/255.0f
+															green:153.0f/255.0f
+															blue:255.0f/255.0f
+															alpha:1.0f];
 	
 	tabBarController.viewControllers = @[mnvc, dnvc];
 	

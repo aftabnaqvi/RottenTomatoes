@@ -18,9 +18,24 @@ static const NSString *DVD_NEW_RELEASES = @"/lists/dvds//new_releases.json&limit
 
 - (void)viewDidLoad {
 	self.url = [NSString stringWithFormat:@"%@%@?apikey=%@&limit=30&country=us", BASE_URL, DVD_NEW_RELEASES, API_KEY];
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-	self.title = @"DVDs";
+	[super viewDidLoad];
+	
+	// this will appear as the title in the navigation bar
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+	label.backgroundColor = [UIColor clearColor];
+	label.font = [UIFont boldSystemFontOfSize:15.0];
+	label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+	label.textAlignment = NSTextAlignmentCenter;
+	label.textColor = [UIColor colorWithRed:205.0f/255.0f
+									  green:153.0f/255.0f
+									   blue:255.0f/255.0f
+									  alpha:1.0f];
+
+	self.navigationItem.titleView = label;
+	label.text = @"DVDs";  // here is the title
+	[label sizeToFit];
+
+//	self.title = @"DVDs";
 }
 
 - (void)didReceiveMemoryWarning {

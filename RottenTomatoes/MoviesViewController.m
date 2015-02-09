@@ -24,6 +24,24 @@ static const NSString *BOX_OFFICE_MOVIES = @"/lists/movies/box_office.json&limit
 	self.url = [NSString stringWithFormat:@"%@%@?apikey=%@&limit=30&country=us", BASE_URL, BOX_OFFICE_MOVIES, API_KEY];
 	[super viewDidLoad];
 	self.title = @"Movies";
+
+	// NOTE: I am duplicating this work in both controllers... short of time...
+	// this will appear as the title in the navigation bar
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+	label.backgroundColor = [UIColor clearColor];
+	label.font = [UIFont boldSystemFontOfSize:15.0];
+	label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+	label.textAlignment = NSTextAlignmentCenter;
+	label.textColor = [UIColor colorWithRed:205.0f/255.0f
+									  green:153.0f/255.0f
+									   blue:255.0f/255.0f
+									  alpha:1.0f];
+
+	self.navigationItem.titleView = label;
+	label.text = @"Movies";  // here is the title
+	[label sizeToFit];
+	
+	self.navigationController.navigationItem.title = @"Movies";
 }
 
 - (void)didReceiveMemoryWarning {
