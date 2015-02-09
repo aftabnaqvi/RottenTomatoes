@@ -27,7 +27,7 @@
                         <string>Title</string>
                     </scopeButtonTitles>
                 </searchBar>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.94999999999999996" tag="4" contentMode="scaleAspectFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="none" id="e6v-bv-HaB">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.94999999999999996" tag="4" contentMode="scaleAspectFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="none" id="e6v-bv-HaB">
                     <rect key="frame" x="0.0" y="107" width="320" height="460"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.75252252310000001" green="0.87887674979999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>

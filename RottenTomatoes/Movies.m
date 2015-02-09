@@ -60,14 +60,21 @@ static const NSString *SEARCH = @"/movies.json";
 	
 	self.refreshControl = [[UIRefreshControl alloc] init];
 	[self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+	self.refreshControl.tintColor = [UIColor colorWithRed:205.0f/255.0f
+													green:153.0f/255.0f
+													 blue:255.0f/255.0f
+													alpha:1.0f];
 	
 	self.refreshControlCollection = [[UIRefreshControl alloc] init];
 	[self.refreshControlCollection addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+	self.refreshControlCollection.tintColor = [UIColor colorWithRed:205.0f/255.0f
+													green:153.0f/255.0f
+													 blue:255.0f/255.0f
+													alpha:1.0f];
 	
 	// adding segment control in the view.
 	[self.tableView addSubview:self.refreshControl];
 	[self.collectionView addSubview:self.refreshControlCollection];
-	
 	
 	self.segmentControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"List", @"Grid", nil]];
 	
