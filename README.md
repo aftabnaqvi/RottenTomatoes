@@ -6,7 +6,7 @@ Time spent: 20 hours
 #Features
 
 #Required
-[x] User can view a list of movies. Poster images load asynchronously.
+[] User can view a list of movies. Poster images load asynchronously.
 
 [x] User can view movie details by tapping on a cell.
 
