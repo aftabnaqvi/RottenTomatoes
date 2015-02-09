@@ -15,7 +15,7 @@
 
 static const NSString *BOX_OFFICE_MOVIES = @"/lists/movies/box_office.json&limit=30";
 
-@interface MoviesViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface MoviesViewController ()
 @end
 
 @implementation MoviesViewController

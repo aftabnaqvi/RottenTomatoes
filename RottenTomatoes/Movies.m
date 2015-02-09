@@ -45,6 +45,10 @@ static const NSString *SEARCH = @"/movies.json";
 	
 	[self handleRefresh:nil];
 	[SVProgressHUD showWithStatus:@"Loading..." maskType:SVProgressHUDMaskTypeBlack];
+	[SVProgressHUD setBackgroundColor:[UIColor colorWithRed:205.0f/255.0f
+													  green:153.0f/255.0f
+													   blue:255.0f/255.0f
+													  alpha:1.0f]];
 	
 	// Since we are using a MovieCell here, MovieCell is separate xib file. We need to specify that xib file as nib file here in the code. In order to moviecell loaded by UITablelView.
 	[self.tableView registerNib:[UINib nibWithNibName:@"MovieCell" bundle:nil] forCellReuseIdentifier:@"MovieCell"];
@@ -131,11 +135,18 @@ static const NSString *SEARCH = @"/movies.json";
 	
 	self.warningView = [[UIView alloc] initWithFrame:CGRectMake(0,
 																self.navigationController.navigationBar.frame.size.height+statusBarHeight(), self.view.frame.size.width, 40)];
+	
 	UILabel *warningLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/4, 0, self.view.frame.size.width/2, 40)];
 	warningLabel.text = @"Network Error";
 	
-	self.warningView.backgroundColor = [UIColor grayColor];
-	warningLabel.backgroundColor = [UIColor grayColor];
+	self.warningView.backgroundColor = [UIColor colorWithRed:205.0f/255.0f
+													   green:153.0f/255.0f
+														blue:255.0f/255.0f
+													   alpha:1.0f];
+	warningLabel.backgroundColor = [UIColor colorWithRed:205.0f/255.0f
+												   green:153.0f/255.0f
+													blue:255.0f/255.0f
+												   alpha:1.0f];
 	[warningLabel setTextAlignment:NSTextAlignmentCenter];
 	warningLabel.font = [UIFont systemFontOfSize:20];
 	
@@ -266,14 +277,6 @@ CGFloat statusBarHeight()
 											 alpha:1.0f].CGColor; // light purple
 	
 	return cell;
-}
-
--(void)collectionView:(UICollectionView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//	[self.collectionView deselectRowAtIndexPath:indexPath animated:YES];
-//	MovieDetailViewController *vc = [[MovieDetailViewController alloc] init];
-//	vc.movie = self.movies[indexPath.row];
-//	self.tabBarController.tabBar.hidden = TRUE;
-//	[self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
