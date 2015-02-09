@@ -1,5 +1,6 @@
 #Rotten Tomatoes
 This is a movies app displaying box office and top rental DVDs using the Rotten Tomatoes API.
+
 Time spent: 15 hours
 
 #Features
@@ -30,7 +31,7 @@ Optional
 
 [x] Customize the navigation bar.
 #Walkthrough
-
+![Alt text](https://github.com/aftabnaqvi/RottenTomatoes/blob/master/RottenTomatoes-1.gif "cc-flow.jpeg")
 
 #Credits
 Rotten Tomatoes API
