@@ -26,12 +26,21 @@
 	
 	self.title = self.movie[@"title"];
 	[self.scrollView setContentSize:CGSizeMake(self.scrollView.frame.size.width, self.scrollView.frame.size.height+20)];
-	NSString *url = [self.movie valueForKeyPath:@"posters.original"];
-	
+	NSString *url = [self.movie valueForKeyPath:@"posters.original"];	
 	[self.posterView setImageWithURL:[NSURL URLWithString:url]];
 	
 	NSString *originalUrl = [self getOriginalUrl:url];
-	[self.posterView setImageWithURL:[NSURL URLWithString:originalUrl]];
+	[self.posterView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:originalUrl]]
+						   placeholderImage:nil
+									success:^(NSURLRequest *request , NSHTTPURLResponse *response , UIImage *image ){
+										[self.posterView setImage:image];
+										
+									}
+									failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
+										NSLog(@"failed loading: %@", error);
+									}
+	];
+	
 	
 	self.titleLabel.text = self.movie[@"title"];
 	[self.titleLabel sizeToFit];

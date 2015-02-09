@@ -22,6 +22,7 @@ static const NSString *SEARCH = @"/movies.json";
 - (void)handleRefresh:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) UIRefreshControl *refreshControlCollection;
 @property (nonatomic, strong) NSMutableArray *movies;
 @property (nonatomic, strong) UIView *warningView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -60,8 +61,13 @@ static const NSString *SEARCH = @"/movies.json";
 	self.refreshControl = [[UIRefreshControl alloc] init];
 	[self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
 	
-	// adding segment control in the navgation bar.
+	self.refreshControlCollection = [[UIRefreshControl alloc] init];
+	[self.refreshControlCollection addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+	
+	// adding segment control in the view.
 	[self.tableView addSubview:self.refreshControl];
+	[self.collectionView addSubview:self.refreshControlCollection];
+	
 	
 	self.segmentControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"List", @"Grid", nil]];
 	
@@ -167,6 +173,38 @@ static const NSString *SEARCH = @"/movies.json";
 	[self.view addSubview:self.warningView];
 }
 
+-(void) loadImage:(NSURL*) url{
+	NSURLRequest *request = [NSURLRequest requestWithURL:url];
+	
+	// helper to cleanup the refresh state
+	void (^cleanup_refresh_state)(Boolean success) = ^(Boolean success){
+		[self createWarningView];
+		self.warningView.hidden = success;
+	};
+	
+	AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+	operation.responseSerializer = [AFJSONResponseSerializer serializer];
+	[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+		
+		if(responseObject == nil){
+			cleanup_refresh_state(false);
+			return;
+		}
+		
+		// Convert the information received in an array of MovieInfo
+		self.movies = [[NSMutableArray alloc] init];
+		for (NSDictionary *movieDict in responseObject[@"movies"]){
+			[self.movies addObject:movieDict];
+		}
+		
+		cleanup_refresh_state(true);
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		cleanup_refresh_state(false);
+	}];
+	
+	// Start Operation
+	[operation start];
+}
 
 #pragma mark - Table methods
 
@@ -183,7 +221,17 @@ static const NSString *SEARCH = @"/movies.json";
 	cell.titleLabel.text = movie[@"title"];
 	cell.synopsisLabel.text = movie[@"synopsis"];
 	NSString *url = [movie valueForKeyPath:@"posters.thumbnail"];
-	[cell.posterView setImageWithURL:[NSURL URLWithString:url]];
+	
+	[cell.posterView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]
+					  placeholderImage:nil
+							   success:^(NSURLRequest *request , NSHTTPURLResponse *response , UIImage *image ){
+								   [cell.posterView setImage:image];
+								   
+							   }
+							   failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
+								   NSLog(@"failed loading: %@", error);
+							   }
+	 ];
 	
 	return cell;
 }
@@ -265,25 +313,29 @@ CGFloat statusBarHeight()
 	NSDictionary *movie = self.movies[indexPath.row];
 	
 	cell.titleLabel.text = movie[@"title"];
-	//cell.synopsisLabel.text = movie[@"synopsis"];
 	NSString *url = [movie valueForKeyPath:@"posters.thumbnail"];
-	[cell.posterView setImageWithURL:[NSURL URLWithString:url]];
-	
+
+	[cell.posterView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]
+						   placeholderImage:nil
+									success:^(NSURLRequest *request , NSHTTPURLResponse *response , UIImage *image ){
+										[cell.posterView setImage:image];
+										
+									}
+									failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
+										NSLog(@"failed loading: %@", error);
+									}
+	 ];
 	
 	cell.layer.borderWidth = 0.5f;
 	cell.layer.borderColor = [UIColor colorWithRed:205.0f/255.0f
 											 green:153.0f/255.0f
 											  blue:255.0f/255.0f
 											 alpha:1.0f].CGColor; // light purple
-	
 	return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	// If you need to use the touched cell, you can retrieve it like so
-	//UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-	//[self.collectionView deselectRowAtIndexPath:indexPath animated:YES];
 	MovieDetailViewController *vc = [[MovieDetailViewController alloc] init];
 	vc.movie = self.movies[indexPath.row];
 	self.tabBarController.tabBar.hidden = TRUE;
