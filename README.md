@@ -30,9 +30,13 @@ Optional
 [x] Customize the highlight and selection effect of the cell.
 
 [x] Customize the navigation bar.
-#Walkthrough
+#Walkthrough # 1
 ![Alt text](https://github.com/aftabnaqvi/RottenTomatoes/blob/master/RottenTomatoes-1.gif "cc-flow.jpeg")
+
+#Walkthrough # 2
+![Alt text](https://github.com/aftabnaqvi/RottenTomatoes/blob/master/RottenTomatoes-2.gif "cc-flow.jpeg")
 
 #Credits
 Rotten Tomatoes API
+
 AFNetworking
